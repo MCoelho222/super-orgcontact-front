@@ -33,7 +33,7 @@
 </template>
 <script>
 import { useCookies } from "vue3-cookies";
-// import { mapActions } from 'vuex';
+import { mapActions } from 'vuex';
 
 const cookies = useCookies().cookies;
 
@@ -49,20 +49,23 @@ export default {
         }
     },
     methods: {
-        // ...mapActions(["contacts/getPersonInfo"]),
+        ...mapActions(["contacts/getPersonInfo"]),
         async populate() {
             let token = cookies.get('token')
             if (token !== null && token.status) {
                 let loader = this.$loading.show();
-                loader.hide()
-                let people = localStorage.getItem('people')
-                if (people != null) {
-                    let peopleObj = JSON.parse(people)
-                    this.peopleObj = peopleObj
-                    let parsePeople = JSON.parse(people)
-                    this.name = parsePeople['profile']['name']
-                    this.email = parsePeople['profile']['email']
-                }
+                await this["contacts/getPersonInfo"](token.token).then(() => {
+
+                    loader.hide()
+                    let people = localStorage.getItem('people')
+                    if (people != null) {
+                        let peopleObj = JSON.parse(people)
+                        this.peopleObj = peopleObj
+                        let parsePeople = JSON.parse(people)
+                        this.name = parsePeople['profile']['name']
+                        this.email = parsePeople['profile']['email']
+                    }
+                })
                 // await this["contacts/getPersonInfo"](token.token).then(() => {
                 if (token == null || !token.status) {
                     this.$router.push("/") 

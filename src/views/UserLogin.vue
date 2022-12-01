@@ -24,11 +24,11 @@ export default {
         }
     },
     methods: {
-        ...mapActions(["contacts/getPersonInfo", "auth/validateToken"]),
+        ...mapActions(["auth/getAuthUrl", "auth/validateToken"]),
         enterWithGoogle() {
-            this["contacts/getPersonInfo"]().then(() => {
-                // location.href = this.url_auth
-                this.$router.push('people/contacts')
+            this["auth/getAuthUrl"]().then(() => {
+                location.href = this.url_auth
+                // this.$router.push('people/contacts')
             })
         }
     },

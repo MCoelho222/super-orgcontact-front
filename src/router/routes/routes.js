@@ -18,26 +18,28 @@ const routes = [
     component: TemplateView,
     
     children: [
-      { path: 'contacts', 
+      { path: 'contacts/:token?', 
       component: ContactsList, 
       beforeEnter: (to) => {
-        let token = cookies.get('token')
-        if (token == null) {
-          return (to.path = "/")
+        // let token = cookies.get('token')
+        // if (token == null) {
+        //   return (to.path = "/")
   
-        } else {
-          if (!token.status) {
-            return (to.path = "/")
-          }
-        }
-        // if (to.params.token) {
-        //   let tokenJson = {
-        //     'token': to.params.token,
-        //     'status': true
+        // } else {
+        //   if (!token.status) {
+        //     return (to.path = "/")
         //   }
-        //   cookies.set('token', JSON.stringify(tokenJson))
-        //   return (to.path = "/people/contacts")
         // }
+        if (to.params.token) {
+          let tokenJson = {
+            'token': to.params.token,
+            'status': true
+          }
+          cookies.set('token', JSON.stringify(tokenJson))
+          // return (to.path = "/people/contacts")
+          return true
+        }
+        return (to.path = "/")
       },
     },
       { path: 'report', 
