@@ -2,7 +2,7 @@
     <div class="statsdiv">
     <p id="initial-msg">Most of your contacts are...</p>
     <p id="top-domain">{{ top.domain }}</p>
-    <p id="top-total">{{ top.total }} contacts!</p>
+    <p id="top-total">You have {{ top.total }} contacts!</p>
     <GChart type="PieChart" :data="chartData" :options="chartOptions"></GChart>
     
     </div>
