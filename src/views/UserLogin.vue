@@ -24,9 +24,9 @@ export default {
         }
     },
     methods: {
-        ...mapActions(["auth/getAuthUrl", "auth/validateToken"]),
+        ...mapActions(["auth/getUrlAuth", "auth/validateToken"]),
         enterWithGoogle() {
-            this["auth/getAuthUrl"]().then(() => {
+            this["auth/getUrlAuth"]().then(() => {
                 location.href = this.url_auth
                 // this.$router.push('people/contacts')
             })
