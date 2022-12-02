@@ -17,33 +17,33 @@ export default {
     
   },
   actions: {
-    async getPersonInfo(context) {
-      await axios.get(`${context.state.backendUrl}/people`).then((response) => {
-        // if (!response.error) {
-        //   let payload = {
-        //     'token': response.data.profile.token,
-        //     'status': true
-        //   }
-        //   cookies.set('token', payload)
-        //   localStorage.setItem('people', JSON.stringify(response.data))
-        // } else {
-        //   let payload = {
-        //     'token': null,
-        //     'staus': false
-        //   }
-        //   cookies.set('token', payload)
-        // }
-        let check = cookies.get('token')
-        if (response.error) {
-          check.status = false
-          let newToken = JSON.stringify(check)
-          cookies.set('token', newToken)
-        }
-        else {
-          if (check !== null && check.status) {
-            localStorage.setItem('people', JSON.stringify(response.data))
+    async getPersonInfo(context, token) {
+      await axios.get(`${context.state.backendUrl}/people/?token=${token}`).then((response) => {
+        if (response.status == 200) {
+          let payload = {
+            'token': response.data.profile.token,
+            'status': true
           }
+          cookies.set('token', payload)
+          localStorage.setItem('people', JSON.stringify(response.data))
+        } else {
+          let payload = {
+            'token': null,
+            'status': false
+          }
+          cookies.set('token', payload)
         }
+        // let check = cookies.get('token')
+        // if (response.error) {
+        //   check.status = false
+        //   let newToken = JSON.stringify(check)
+        //   cookies.set('token', newToken)
+        // }
+        // else {
+        //   if (check !== null && check.status) {
+        //     localStorage.setItem('people', JSON.stringify(response.data))
+        //   }
+        // }
         
       })
     },

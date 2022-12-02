@@ -22,7 +22,7 @@ export default {
   },
   actions: {
     async getUrlAuth(context) {
-      context.commit("setURL", null);
+      // context.commit("setURL", null);
       await axios.post(`${context.state.backendUrl}/users/auth/google`).then((response) => {
         context.commit("setURL", response.data.url);
       })

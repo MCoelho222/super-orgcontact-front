@@ -13,14 +13,14 @@
 </template>
 <script>
 import { mapActions, mapState } from 'vuex';
-// import { useCookies } from 'vue3-cookies';
+import { useCookies } from 'vue3-cookies';
 
-// const cookies = useCookies().cookies
+const cookies = useCookies().cookies
 
 export default {
     data() {
         return {
-            user: {}
+            user: {},
         }
     },
     methods: {
@@ -28,7 +28,6 @@ export default {
         enterWithGoogle() {
             this["auth/getUrlAuth"]().then(() => {
                 location.href = this.url_auth
-                // this.$router.push('people/contacts')
             })
         }
     },
@@ -38,17 +37,17 @@ export default {
         }) 
     },
     async mounted() {
-        // let token = cookies.get('token')
-        // if (token !== null) {
-        //     if (token.status) {
-        //         await this["auth/validateToken"](token.token).then(() => {
-        //             let currentToken = cookies.get('token')
-        //             if (currentToken.status) {
-        //                 this.$router.push('/people/contacts')
-        //             } 
-        //         })
-        //     }
-        // }
+        let token = cookies.get('token')
+        if (token !== null) {
+            if (token.status) {
+                await this["auth/validateToken"](token.token).then(() => {
+                    let currentToken = cookies.get('token')
+                    if (currentToken.status) {
+                        this.$router.push('/people/contacts')
+                    } 
+                })
+            }
+        }
     }
 }
 </script>

@@ -13,14 +13,24 @@ const routes = [
     component: UserLogin
   },
   {
-    path: "/people",
+    path: "/people:token?",
     name: 'Template',
     component: TemplateView,
+    beforeEnter: (to) => {
+      if (to.params.token) {
+        let tokenJson = {
+          'token': to.params.token,
+          'status': true
+        }
+        cookies.set('token', JSON.stringify(tokenJson))
+        return (to.path = "/people/contacts")
+      }
+    },
     
     children: [
-      { path: 'contacts/:token?', 
+      { path: 'contacts', 
       component: ContactsList, 
-      beforeEnter: (to) => {
+      // beforeEnter: (to) => {
         // let token = cookies.get('token')
         // if (token == null) {
         //   return (to.path = "/")
@@ -30,17 +40,7 @@ const routes = [
         //     return (to.path = "/")
         //   }
         // }
-        if (to.params.token) {
-          let tokenJson = {
-            'token': to.params.token,
-            'status': true
-          }
-          cookies.set('token', JSON.stringify(tokenJson))
-          // return (to.path = "/people/contacts")
-          return true
-        }
-        return (to.path = "/")
-      },
+      // },
     },
       { path: 'report', 
       component: ReportView
