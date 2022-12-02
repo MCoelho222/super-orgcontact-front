@@ -6,8 +6,9 @@
             <p id="email">{{ emailAddress }}</p>
         </div>
 
-        <p id="sorry-msg" v-if="isEmpty">Sorry, you don't have any contacts to share...</p>
+        <p id="sorry-msg" v-if="isEmpty">Whoops, you don't have any e-mail contacts...</p>
         <p id="todo-msg" v-if="isEmpty">Please, go to your e-mail box and add some e-mails to your contacts.</p>
+        
         <table class="table align-middle" v-else>
             <thead>
                 <tr>
