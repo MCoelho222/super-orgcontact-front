@@ -5,6 +5,7 @@
             <p v-if="!isEmpty" id="words">{{ someOtherWords }}</p>
             <p id="email">{{ emailAddress }}</p>
         </div>
+        <!-- <div class="container"> -->
             <div id="select-div" class="container-fluid p-4">
                 <div id="in-select-div"  class="row mb-3">
                     <div class="col-4">
@@ -30,11 +31,12 @@
                 
                 </div>
             </div>
-       
+        <!-- </div> -->
+
         <p id="sorry-msg" v-if="isEmpty">Whoops! It seems you don't have many e-mail contacts in your account...</p>
         <p id="todo-msg" v-if="isEmpty">No problem! Please, go to your e-mail account and add some e-mails to your contacts. Alternatively, try to login with another account.</p>
         <p id="alternative-msg" v-if="isEmpty">Alternatively, try to login with another account.</p>
-        <img id="lucky-cat" src="../assets/Lucky-Beckoning-Cat.png" alt="Lucky cat" v-if="isEmpty">
+        <img id="lucky-cat" src="../assets/Lucky-Beckoning-Cat.png" alt="Lucky cat" v-if="isEmpty" @click="logout">
         <table class="table align-middle" v-else>
             <thead>
                 <tr>
@@ -98,7 +100,9 @@ export default {
                             let parsePeople = JSON.parse(people)
                             this.name = parsePeople['profile']['name']
                             this.email = parsePeople['profile']['email']
-                        } 
+                        }
+                       
+                        
                     } else {
                         this["auth/logout"]().then(() => {
                             this.$router.push("/") 
@@ -128,6 +132,11 @@ export default {
             if (this.selected == 'all domains') {
                 this.peopleObj.contacts = this.contacts
             }
+        },
+        logout() {
+            this["auth/logout"]().then(() => {
+                this.$router.push("/") 
+            })
         }
     },
     computed: {
@@ -209,5 +218,27 @@ select:hover {
     margin-top: 50px;
     height: 150px;
     width: 150px;
+}
+#lucky-cat:hover {
+    cursor: pointer;
+  /* Start the shake animation and make the animation last for 0.5 seconds */
+  animation: shake 0.5s;
+
+  /* When the animation is finished, start again */
+  animation-iteration-count: infinite;
+}
+
+@keyframes shake {
+  0% { transform: translate(1px, 1px) rotate(0deg); }
+  10% { transform: translate(-1px, -2px) rotate(-1deg); }
+  20% { transform: translate(-3px, 0px) rotate(1deg); }
+  30% { transform: translate(3px, 2px) rotate(0deg); }
+  40% { transform: translate(1px, -1px) rotate(1deg); }
+  50% { transform: translate(-1px, 2px) rotate(-1deg); }
+  60% { transform: translate(-3px, 1px) rotate(0deg); }
+  70% { transform: translate(3px, 1px) rotate(-1deg); }
+  80% { transform: translate(-1px, -1px) rotate(1deg); }
+  90% { transform: translate(1px, 2px) rotate(0deg); }
+  100% { transform: translate(1px, -2px) rotate(-1deg); }
 }
 </style>
