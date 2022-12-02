@@ -2,9 +2,6 @@ import UserLogin from '../../views/UserLogin.vue';
 import TemplateView from '../../views/TemplateView.vue';
 import ContactsList from '../../views/ContactsList.vue';
 import ReportView from '../../views/ReportView.vue';
-import { useCookies } from "vue3-cookies";
-
-const cookies = useCookies().cookies;
 
 const routes = [
   {
@@ -16,6 +13,7 @@ const routes = [
     path: "/people:token?",
     name: 'Template',
     component: TemplateView,
+<<<<<<< HEAD
     beforeEnter: (to) => {
       if (to.params.token) {
         let tokenJson = {
@@ -41,6 +39,11 @@ const routes = [
         //   }
         // }
       // },
+=======
+    children: [
+      { path: 'contacts', 
+      component: ContactsList, 
+>>>>>>> 7dfd67f0ba4d2c6fcf2d1fe24c7879a8f6e81bfa
     },
       { path: 'report', 
       component: ReportView

@@ -3,11 +3,11 @@
         <nav class="navbar navbar-expand-lg bg-primary">
             <div class="container-fluid">
                 <div class="left-side">
-                    <span id="brand" class="nav-link active">Super OrgContact</span>
-                    <span><a id="report" class="nav-link active" aria-current="page" href="#/people/report">Report</a></span>
-                    <span><a id="home" class="nav-link active" aria-current="page" href="#/people/contacts">Home</a></span>
+                    <span id="brand" class="navbar-brand mb-0 h1">Super OrgContact</span>
+                    <a id="report" class="nav-link" aria-current="page" href="#/people/report">Report</a>
+                    <a id="home" class="nav-link" aria-current="page" href="#/people/contacts">Home</a>
                 </div>
-                <button class="btn btn-outlined btn-primary" type="button" @click="logout">Logout</button>
+                <span id="logout-btn" @click="logout">Logout</span>
             </div>
         </nav>
     </div>
@@ -35,19 +35,28 @@ export default {
 <style scoped>
 #brand {
     color: white;
+    font-weight: bolder;
     font-size:large;
-
-
 }
 #report {
     color: white;
-    font-size:medium;
 }
 #home {
     color: white;
-    font-size:medium;
+}
+#logout-btn {
+    color: white;
+}
+#logout-btn:hover {
+    font-weight: bolder;
+    color:darkgrey;
+    cursor: pointer;
 }
 .left-side {
     display: flex;
+}
+nav a.nav-link:hover {
+    font-size:xx-small;
+    
 }
 </style>

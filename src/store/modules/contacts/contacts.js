@@ -8,7 +8,7 @@ export default {
   state () {
     return {
       personInfo: {},
-      backendUrl: 'https://superorgcontact-3fufpf5spq-rj.a.run.app',
+      backendUrl: 'http://localhost:5000',
     }
   },
   getters: {
@@ -17,8 +17,8 @@ export default {
     
   },
   actions: {
-    async getPersonInfo(context, token) {
-      await axios.get(`${context.state.backendUrl}/people/?token=${token}`).then((response) => {
+    async getPersonInfo(context) {
+      await axios.get(`${context.state.backendUrl}/people`).then((response) => {
         if (response.status == 200) {
           let payload = {
             'token': response.data.profile.token,

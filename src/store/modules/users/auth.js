@@ -8,25 +8,16 @@ export default {
   state () {
     return {
       url_auth: null,
-      status: true,
-      backendUrl: 'https://superorgcontact-3fufpf5spq-rj.a.run.app',
+      backendUrl: 'http://localhost:5000',
     }
   },
   getters: {
     
   },
   mutations: {
-    setURL(state,  url) {
-      state.url_auth = url
-    }
+
   },
   actions: {
-    async getUrlAuth(context) {
-      // context.commit("setURL", null);
-      await axios.post(`${context.state.backendUrl}/users/auth/google`).then((response) => {
-        context.commit("setURL", response.data.url);
-      })
-    },
     async validateToken(context, token) {
       await axios.get(`${context.state.backendUrl}/users/verify/?token=${token}`).then((response) => {
         let tokenObj = cookies.get('token')
