@@ -73,10 +73,10 @@ export default {
                             loader.hide()
                         } else {
                             this["auth/logout"]().then(() => {
+                                loader.hide()
                                 this.$router.push("/")
                             })
                         }
-                        
                     })
                 } else {
                     let people = localStorage.getItem('people')
@@ -86,6 +86,7 @@ export default {
                         let parsePeople = JSON.parse(people)
                         this.name = parsePeople['profile']['name']
                         this.email = parsePeople['profile']['email']
+                        loader.hide()
                     }
                 }
             }
