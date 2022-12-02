@@ -49,45 +49,38 @@ export default {
         }
     },
     methods: {
-        ...mapActions(["contacts/getPersonInfo"]),
+        ...mapActions(["contacts/getPersonInfo", "auth/validateToken", "auth/logout"]),
         async populate() {
             let token = cookies.get('token')
-            if (token !== null && token.status) {
-                let loader = this.$loading.show();
-                await this["contacts/getPersonInfo"](token.token).then(() => {
+            if (token !== null) {
+                await this["auth/validateToken"](token.token).then(() => {
+                    let verifiedToken = cookies.get('token')
+                    if (verifiedToken.status) {
 
-                    loader.hide()
-                    let people = localStorage.getItem('people')
-                    if (people != null) {
-                        let peopleObj = JSON.parse(people)
-                        this.peopleObj = peopleObj
-                        let parsePeople = JSON.parse(people)
-                        this.name = parsePeople['profile']['name']
-                        this.email = parsePeople['profile']['email']
+                        let loader = this.$loading.show();
+                        this["contacts/getPersonInfo"]().then(() => {
+            
+                            loader.hide()
+                            let people = localStorage.getItem('people')
+                            if (people != null) {
+                                let peopleObj = JSON.parse(people)
+                                this.peopleObj = peopleObj
+                                let parsePeople = JSON.parse(people)
+                                this.name = parsePeople['profile']['name']
+                                this.email = parsePeople['profile']['email']
+                            }
+                        })
+                        
+                    } else {
+                        this["auth/logout"]().then(() => {
+                            this.$router.push("/") 
+                        })
                     }
+                    
                 })
-                // await this["contacts/getPersonInfo"](token.token).then(() => {
-                if (token == null || !token.status) {
-                    this.$router.push("/") 
-                }
-                    // }
-                
-                
-            // if (token !== null) {
-            //     if (token.status) {
-            //         let loader = this.$loading.show();
-            //         await this["contacts/getPersonInfo"](token.token).then(() => {
-            //             loader.hide()
-            //             let people = localStorage.getItem('people')
-            //             let parsePeople = JSON.parse(people)
-            //             this.name = parsePeople['profile']['name']
-            //             this.email = parsePeople['profile']['email']
-            //             if (people != null) {
-            //                 let peopleObj = JSON.parse(people)
-            //                 this.peopleObj = peopleObj
-            //             }
-            //         })
-            //     }
+            }
+            if (token == null || !token.status) {
+                this.$router.push("/") 
             }
         }
     },
