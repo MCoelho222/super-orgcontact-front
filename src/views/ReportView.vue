@@ -1,9 +1,10 @@
 <template>
     <div class="statsdiv">
-    <p id="initial-msg">Most of your contacts are...</p>
-    <p id="top-domain">{{ top.domain }}</p>
-    <p id="top-total">Nice! You have {{ top.total }} contacts!</p>
-    <GChart type="PieChart" :data="chartData" :options="chartOptions"></GChart>
+        <p id="initial-msg">Most of your contacts are from...</p>
+        <p id="top-domain">{{ top.domain }}</p>
+        <div id="g-pie-chart" class="container-fluid">
+            <GChart type="PieChart" :data="chartData" :options="chartOptions.chart"></GChart>
+        </div>
     
     </div>
 </template>
@@ -21,8 +22,8 @@ export default {
             chartOptions: {
                 chart: {
                     title: 'Contacts by Domain',
-                    width: 1200,
-                    heigth: 1200
+                    width: 1500,
+                    height: 500
                 }
             },
             top: {}
@@ -68,7 +69,7 @@ export default {
 } */
 #initial-msg {
     padding-top: 30px;
-    font-size:x-large;
+    font-size: large;
 }
 #top-domain {
     color:dodgerblue;
