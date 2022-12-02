@@ -41,12 +41,7 @@ export default {
         let token = cookies.get('token')
         if (token !== null) {
             if (token.status) {
-                await this["auth/validateToken"](token.token).then(() => {
-                    let currentToken = cookies.get('token')
-                    if (currentToken.status) {
-                        this.$router.push('/people/contacts')
-                    } 
-                })
+                this.$router.push('/people/contacts')
             }
         }
     }

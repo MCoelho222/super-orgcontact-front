@@ -51,32 +51,31 @@ export default {
     methods: {
         ...mapActions(["contacts/getPersonInfo", "auth/validateToken", "auth/logout"]),
         async populate() {
+            let loader = this.$loading.show();
             let token = cookies.get('token')
             if (token !== null) {
                 await this["auth/validateToken"](token.token).then(() => {
+                    // check valid token
                     let verifiedToken = cookies.get('token')
                     if (verifiedToken.status) {
-
-                        let loader = this.$loading.show();
-                        this["contacts/getPersonInfo"]().then(() => {
-            
+                        // Populate contacts object
+                        let people = localStorage.getItem('people')
+                        if (people != null) {
+                            let peopleObj = JSON.parse(people)
+                            this.peopleObj = peopleObj
+                            let parsePeople = JSON.parse(people)
+                            this.name = parsePeople['profile']['name']
+                            this.email = parsePeople['profile']['email']
                             loader.hide()
-                            let people = localStorage.getItem('people')
-                            if (people != null) {
-                                let peopleObj = JSON.parse(people)
-                                this.peopleObj = peopleObj
-                                let parsePeople = JSON.parse(people)
-                                this.name = parsePeople['profile']['name']
-                                this.email = parsePeople['profile']['email']
-                            }
-                        })
+                        }
+                       
                         
                     } else {
                         this["auth/logout"]().then(() => {
+                            loader.hide()
                             this.$router.push("/") 
                         })
                     }
-                    
                 })
             }
             if (token == null || !token.status) {
