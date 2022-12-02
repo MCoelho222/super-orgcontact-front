@@ -20,5 +20,10 @@ export default {
 nav {
   padding: 20px;
 }
+* {
+  margin: 0;
+  padding: 0;
+  
+}
 
 </style>
