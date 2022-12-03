@@ -186,11 +186,11 @@ ul {
     text-align: left;
     padding-left: 80px;
     padding-right: 80px;
-    padding-top: 30px;
+    padding-top: 20px;
 }
 #select-bar {
     margin: 5px 0px 30px 0px;
-    padding: 5px 0px 5px 10px;
+    padding: 6px 0px 5px 10px;
 }
 #select-bar-title {
     font-weight: bold;
