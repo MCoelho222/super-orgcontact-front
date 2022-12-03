@@ -1,14 +1,12 @@
-# Description
+# Super OrgContact
 
-This is the frontend application of the Super OrgContact project.
+## Description
 
-Access: [Super OrgContact](https://mcoelho-people.web.app)
+This is the frontend application of the Super OrgContact project. The main objective is to download and display e-mail contacts of authenticated users. The contacts are displayed in a organized way, separated by domain. It also show a piechart with the distribution per domain.
 
-To run the application you need to run the [Backend application on localhost](https://github.com/MCoelho222/poeple-app)
+**important** This branch **dev** is only for running locally!
 
-For running locally, please follow this instructions.
-
-**IMPORTANT**: If the page fail to load, just reload it. Some type of accounts, for example student accounts just do not work at all, and you'll have to manually delete the cookie named token in your browser devtools.
+For running locally, and see the application working, please **switch to branch dev** in the [backend repo](https://github.com/MCoelho222/super-orgcontact), and run both.
 
 ## Project setup
 ```
