@@ -1,11 +1,19 @@
 <template>
     <div class="statsdiv">
-        <p id="initial-msg">Most of your contacts are from...</p>
+        <!-- HEADER -->
+        <p id="initial-msg">
+        Most of your contacts are from...</p>
         <p id="top-domain">{{ top.domain }}</p>
-        <div id="g-pie-chart" class="container-fluid">
-            <GChart type="PieChart" :data="chartData" :options="chartOptions.chart"></GChart>
+        <!-- CHART -->
+        <div 
+        id="g-pie-chart" 
+        class="container-fluid">
+            <GChart 
+            type="PieChart" 
+            :data="chartData" 
+            :options="chartOptions.chart">
+            </GChart>
         </div>
-    
     </div>
 </template>
 <script>
@@ -28,17 +36,10 @@ export default {
             top: {}
         }
     },
-    methods: {
-
-    },
-    computed: {
-
-    },
     mounted() {
         let data = localStorage.getItem('people')
         if (data != null) {
             let contacts = JSON.parse(data).contacts
-
             let contactsKeys = Object.keys(contacts)
             let chartLegend = ['Domain', 'Total']
             this.chartData.push(chartLegend)
@@ -60,10 +61,12 @@ export default {
 }
 </script>
 <style scoped>
+/* Header first phrase */
 #initial-msg {
     padding-top: 30px;
     font-size: large;
 }
+/* Header-top domain */
 #top-domain {
     color:dodgerblue;
     font-weight: bolder;
