@@ -1,62 +1,72 @@
 <template>
-    <div class="container-fluid p-4">
-        <div id="top-msg" class="container-fluid">
-            <h5 id="welcome">{{ welcomeMsg }}</h5>
-            <p v-if="!isEmpty" id="words">{{ someOtherWords }}</p>
+    <div class="container-fluid">
+        <!-- HEADER -->
+        <div id="header" class="container-fluid">
+            <h4 id="name">{{ name }}</h4>
             <p id="email">{{ emailAddress }}</p>
+            <p v-if="!isEmpty" id="after-name">{{ someOtherWords }}</p>
         </div>
-        <!-- <div class="container"> -->
-            <div id="select-div" class="container-fluid p-4">
-                <div id="in-select-div"  class="row mb-3">
-                    <div class="col-4">
-                        <label>
-                        <h6 id="select-bar-title" class="form-label">Select a domain:</h6>
-                        </label>
-                        <select 
-                        id="select-bar"
-                        class="form-select shadow"
-                        @input="selectDomain"
-                        ><option disabled selected>
-                        {{ selected }}
-                        </option>
-                        <option>all domains</option>
-                        <option 
-                        v-for="(domain, key, index) in contacts"
-                        :value="key"
-                        :key="index">
-                        {{ key }}
-                        </option>
-                        </select>
-                    </div>
-                
+        <!-- SELECT BAR -->
+        <div id="select-div" class="container-fluid">
+            <div id="in-select-div"  class="row mb-3">
+                <div class="col-12">
+                    <label>
+                    <h6 id="select-bar-title" 
+                    class="form-label">Select a domain:</h6>
+                    </label>
+                    <select 
+                    id="select-bar"
+                    class="form-select shadow"
+                    @input="selectDomain"
+                    ><option disabled selected>
+                    {{ selected }}
+                    </option>
+                    <option>all domains</option>
+                    <option 
+                    v-for="(domain, key, index) in contacts"
+                    :value="key"
+                    :key="index">
+                    {{ key }}
+                    </option>
+                    </select>
                 </div>
+            
             </div>
-        <!-- </div> -->
-
-        <p id="sorry-msg" v-if="isEmpty">Whoops! It seems you don't have many e-mail contacts in your account...</p>
-        <p id="todo-msg" v-if="isEmpty">No problem! Please, go to your e-mail account and add some e-mails to your contacts. Alternatively, try to login with another account.</p>
-        <p id="alternative-msg" v-if="isEmpty">Alternatively, try to login with another account.</p>
-        <img id="lucky-cat" src="../assets/Lucky-Beckoning-Cat.png" alt="Lucky cat" v-if="isEmpty" @click="logout">
-        <table class="table align-middle" v-else>
-            <thead>
-                <tr>
-                <th scope="col">#</th>
-                <th class="text-start lg" scope="col">Domain</th>
-                <th class="text-start lg" scope="col">Emails</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr v-for="(domain, key, index) in peopleObj.contacts" :key="index">
-                <th scope="row">{{index + 1}}</th>
-                    <td class="text-start">{{ key }}</td>
-                    <td class="text-start">
-                        <ul>
-                            <li v-for="(email,  item) in domain" :key="item">{{email}}</li>
-                        </ul>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        </div>
+        <!-- MESSAGES FOR EMPTY CONTACTS -->
+        <p id="whoops-msg" v-if="isEmpty">
+        Whoops! It seems you don't have many e-mail contacts in your account...</p>
+        <p id="todo-msg" v-if="isEmpty">
+        No problem! Please, go to your e-mail account and add some e-mails to your contacts.</p>
+        <p id="alternative-msg" v-if="isEmpty">
+        Alternatively, try to login with another account.</p>
+        <img 
+        id="lucky-cat" 
+        src="../assets/Lucky-Beckoning-Cat.png" 
+        alt="Lucky cat" v-if="isEmpty" @click="logout">
+        <!-- TABLE CONTACTS BY DOMAIN -->
+        <div class="container-fluid p-4" v-else>
+            <table class="table align-middle">
+                <thead>
+                    <tr>
+                    <th scope="col">#</th>
+                    <th class="text-start lg" scope="col">Domain</th>
+                    <th class="text-start lg" scope="col">Emails</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(domain, key, index) in peopleObj.contacts" :key="index">
+                    <th scope="row" class="table-primary">{{index + 1}}</th>
+                        <td class="table-primary text-start">{{ key }}</td>
+                        <td class="table-info text-start">
+                            <ul>
+                                <li v-for="(email,  item) in domain" :key="item">{{email}}</li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </template>
 <script>
@@ -71,10 +81,12 @@ export default {
         return {
             peopleObj: {
                 'profile': {},
-                'contacts': {}
+                'contacts': {
+                    'email.com': ['user@email.com']
+                }
             },
             name: 'User',
-            email: 'useremail@email.com' ,
+            email: 'user@email.com' ,
             selected:'all domains',
             contacts: {},
             domains: []
@@ -101,8 +113,6 @@ export default {
                             this.name = parsePeople['profile']['name']
                             this.email = parsePeople['profile']['email']
                         }
-                       
-                        
                     } else {
                         this["auth/logout"]().then(() => {
                             this.$router.push("/") 
@@ -144,11 +154,8 @@ export default {
             let keys = Object.keys(this.peopleObj.contacts)
             return keys.length == 0
         },
-        welcomeMsg() {
-            return `Welcome, ${this.name}!`
-        },
         someOtherWords() {
-            return `These are the email addresses from all your contacts`
+            return `These are your contacts by domain`
         },
         emailAddress() {
             return `${this.email}`
@@ -160,60 +167,51 @@ export default {
 }
 </script>
 <style scoped>
-
-* {
-  margin: 0;
-  padding: 0;
-}
+/* List of emails inside the tables cells */
 ul {
     list-style-type: none;
 }
-#top-msg {
-    color: rgb(34, 33, 33);
+/* Appears in the header */
+#name {
+    padding: 30px 0px 30px 0px;
 }
-
-#sorry-msg {
-    padding-top: 0px;
-}
-
-#todo-msg {
-    padding-top: 10px;
-}
-#alternative-msg {
-    padding-top: 10px;
-}
-
-#welcome {
-    padding: 30px 0px 10px 0px;
-}
-
-#words {
-    margin: 0px 0px;
-}
-
+/* Appears in the header */
 #email {
     margin: 10px 10px;
     color: rgb(9, 123, 236);
     font-weight: bolder;
 }
+/* Select bar div */
 #select-div {
     text-align: left;
+    padding-left: 80px;
+    padding-right: 80px;
+    padding-top: 20px;
 }
-
 #select-bar {
     margin: 5px 0px 30px 0px;
-    padding: 5px 0px 5px 10px;
-
-    /* width:80% */
+    padding: 6px 0px 5px 10px;
 }
 #select-bar-title {
     font-weight: bold;
 }
 select:hover {
-    
     border-color: dodgerblue;
     cursor: pointer;
 }
+/* Appears when no contacts */
+#whoops-msg {
+    padding-top: 0px;
+}
+/* Appears when no contacts */
+#todo-msg {
+    padding-top: 10px;
+}
+/* Appears when no contacts */
+#alternative-msg {
+    padding-top: 10px;
+}
+/* Appears when no contacts */
 #lucky-cat {
     margin-top: 50px;
     height: 150px;
@@ -221,11 +219,11 @@ select:hover {
 }
 #lucky-cat:hover {
     cursor: pointer;
-  /* Start the shake animation and make the animation last for 0.5 seconds */
-  animation: shake 0.5s;
-
-  /* When the animation is finished, start again */
-  animation-iteration-count: infinite;
+    /* Start the shake animation and make the animation last for 0.5 seconds */
+    animation: shake 0.5s;
+    
+    /* When the animation is finished, start again */
+    animation-iteration-count: infinite;
 }
 
 @keyframes shake {
