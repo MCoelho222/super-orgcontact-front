@@ -1,13 +1,25 @@
 <template>
+    <!-- NAVBAR -->
     <div class="container-fluid">
         <nav class="navbar navbar-expand-lg bg-primary">
             <div class="container-fluid">
                 <div class="left-side">
-                    <span id="brand" class="nav-link active">Super OrgContact</span>
-                    <span><a id="report" class="nav-link active" aria-current="page" href="#/people/report">Report</a></span>
-                    <span><a id="home" class="nav-link active" aria-current="page" href="#/people/contacts">Home</a></span>
+                    <span 
+                    id="nav-brand" 
+                    class="navbar-brand mb-0">
+                    Super OrgContact</span>
+                    <a 
+                    id="nav-report" 
+                    class="nav-link" 
+                    aria-current="page" 
+                    href="#/people/report">Report</a>
+                    <a 
+                    id="nav-contacts" 
+                    class="nav-link" 
+                    aria-current="page" 
+                    href="#/people/contacts">Contacts</a>
                 </div>
-                <button class="btn btn-outlined btn-primary" type="button" @click="logout">Logout</button>
+                <span id="logout-btn" @click="logout">Logout</span>
             </div>
         </nav>
     </div>
@@ -27,27 +39,38 @@ export default {
             this.$router.push('/')
             )
         }
-    },
-    computed: {
     }
 }
 </script>
 <style scoped>
-#brand {
+/* Super OrgContact */
+#nav-brand {
     color: white;
+    font-weight: bolder;
     font-size:large;
-
-
+    padding-bottom: 0px;
 }
-#report {
+/* Navbar link */
+#nav-report {
     color: white;
-    font-size:medium;
 }
-#home {
+/* Navbar link */
+#nav-contacts {
     color: white;
-    font-size:medium;
 }
+/* Navbar logout button */
+#logout-btn {
+    color: white;
+}
+#logout-btn:hover {
+    font-weight: bolder;
+    cursor: pointer;
+}
+/* Navbar links div */
 .left-side {
     display: flex;
+}
+nav a.nav-link:hover {
+    font-weight:bolder; 
 }
 </style>
