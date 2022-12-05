@@ -25,7 +25,9 @@
             </div>
             <!-- ENTER WITH GOOGLE -->
             <div id="login-main-div">
-                <img id="brand-img" src="../assets/at-sign-aroba-email-e-mail-47390.webp" alt="arroba symbol">
+                <img id="brand-img" 
+                src="../assets/at-sign-aroba-email-e-mail-47390.webp" 
+                alt="arroba symbol">
                 <h4 id="brand-login">Super OrgContacts</h4>
                 <p id="words-login">All your contacts by domain</p>  
                 <p>Please, let us help you manage your contacts!</p>
@@ -36,7 +38,8 @@
                 @click="enterWithGoogle">Login with Google</button>
             </div>
             <!-- FOOTER -->
-            <p id="footer">&copy; 2022 Super OrgContacs. All rights reserved.</p>
+            <p id="footer">
+            &copy; 2022 Super OrgContacs. All rights reserved.</p>
         </div>
     </div>
 </template>

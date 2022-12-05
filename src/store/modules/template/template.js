@@ -5,11 +5,11 @@ export default {
         return {
           
             sidebarWidth: 300,
-            toggleSideBar: true // Controlador hide/show SideBar
+            toggleSideBar: true // Controls hide/show SideBar
         }
     },
     mutations: {
-      // Controla o SWITCH para esconder SideBar
+      // Controls the SWITCH to hide the SideBar
       controlSideBar(state) {
         if (state.toggleSideBar) {
           state.sidebarWidth = 60
@@ -21,12 +21,12 @@ export default {
       },
     },
     getters: {
-      // Retorna o estilo do SideBar
+      // Returns the style of the sidebar
       sidebar(state) {
           return `width: ${state.sidebarWidth}px; height: 100vh; display: flex; flex-direction: column; justify-content: space-between; transition: all 0.4s`
         },
 
-      // Retorna o estilo da div de conteúdos conforme a largura do SideBar
+      // Returns the style of the main div depending on the style of the SideBar
       main(state) {
           return `width: calc(100% - ${state.sidebarWidth}px); height: 100%;`
       },

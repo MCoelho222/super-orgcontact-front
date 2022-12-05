@@ -7,15 +7,8 @@ export default {
   namespaced: true,
   state () {
     return {
-      url_auth: null,
       backendUrl: 'http://localhost:5000',
     }
-  },
-  getters: {
-    
-  },
-  mutations: {
-
   },
   actions: {
     async validateToken(context, token) {

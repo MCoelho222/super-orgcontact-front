@@ -11,11 +11,6 @@ export default {
       backendUrl: 'http://localhost:5000',
     }
   },
-  getters: {
-  },
-  mutations: {
-    
-  },
   actions: {
     async getPersonInfo(context) {
       await axios.get(`${context.state.backendUrl}/people`).then((response) => {
@@ -35,7 +30,6 @@ export default {
         }
       })
     },
-
   }
 }
 

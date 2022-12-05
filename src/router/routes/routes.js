@@ -14,12 +14,13 @@ const routes = [
     name: 'Template',
     component: TemplateView,
     children: [
+      
       { path: 'contacts', 
       component: ContactsList, 
-    },
+      },
       { path: 'report', 
       component: ReportView
-    }
+      }
     ]
   }
 ]

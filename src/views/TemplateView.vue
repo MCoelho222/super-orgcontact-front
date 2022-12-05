@@ -11,17 +11,6 @@ import NavBar from '../components/NavBar.vue'
 export default {
     components: {
         'proj-nav': NavBar
-    },
-    data() {
-        return {
-
-        }
-    },
-    methods: {
-
-    },
-    computed: {
-
     }
 }
 </script>
