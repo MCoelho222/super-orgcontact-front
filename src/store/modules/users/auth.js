@@ -9,8 +9,8 @@ export default {
     return {
       url_auth: null,
       status: true,
-      // backendUrl: 'https://superorgcontact-3fufpf5spq-rj.a.run.app',
-      backendUrl: 'http://localhost:5000'
+      backendUrl: 'https://superorgcontact-3fufpf5spq-rj.a.run.app',
+      // backendUrl: 'http://localhost:5000'
     }
   },
   getters: {
