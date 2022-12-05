@@ -12,17 +12,6 @@ export default {
     components: {
         'proj-nav': NavBar
     },
-    data() {
-        return {
-
-        }
-    },
-    methods: {
-
-    },
-    computed: {
-
-    }
 }
 </script>
 <style scoped>

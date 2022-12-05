@@ -55,12 +55,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr v-for="(domain, key, index) in peopleObj.contacts" :key="index">
-                    <th scope="row" class="table-primary">{{index + 1}}</th>
+                    <tr 
+                    v-for="(domain, key, index) in peopleObj.contacts" 
+                    :key="index">
+                    <th 
+                    scope="row" 
+                    class="table-primary">
+                    {{index + 1}}</th>
                         <td class="table-primary text-start">{{ key }}</td>
                         <td class="table-info text-start">
                             <ul>
-                                <li v-for="(email,  item) in domain" :key="item">{{email}}</li>
+                                <li 
+                                v-for="(email,  item) in domain" 
+                                :key="item">{{email}}</li>
                             </ul>
                         </td>
                     </tr>

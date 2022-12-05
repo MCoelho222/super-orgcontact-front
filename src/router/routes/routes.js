@@ -27,25 +27,14 @@ const routes = [
       }
       return (to.path = "/")
     },
-    
     children: [
+
       { path: 'contacts', 
       component: ContactsList, 
-      // beforeEnter: (to) => {
-        // let token = cookies.get('token')
-        // if (token == null) {
-        //   return (to.path = "/")
-  
-        // } else {
-        //   if (!token.status) {
-        //     return (to.path = "/")
-        //   }
-        // }
-      // },
-    },
+      },
       { path: 'report', 
       component: ReportView
-    }
+      }
     ]
   }
 ]

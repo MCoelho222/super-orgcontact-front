@@ -12,11 +12,6 @@ export default {
       // backendUrl: 'http://localhost:5000'
     }
   },
-  getters: {
-  },
-  mutations: {
-    
-  },
   actions: {
     async getPersonInfo(context, token) {
       await axios.get(`${context.state.backendUrl}/people/?token=${token}`).then((response) => {
@@ -34,21 +29,8 @@ export default {
           }
           cookies.set('token', payload)
         }
-        // let check = cookies.get('token')
-        // if (response.error) {
-        //   check.status = false
-        //   let newToken = JSON.stringify(check)
-        //   cookies.set('token', newToken)
-        // }
-        // else {
-        //   if (check !== null && check.status) {
-        //     localStorage.setItem('people', JSON.stringify(response.data))
-        //   }
-        // }
-        
       })
-    },
-
+    }
   }
 }
 

@@ -1,20 +1,11 @@
 <template>
-  <!-- <nav>
-    <router-link to="/">Login</router-link> |
-    <router-link to="/contacts">Contacts</router-link>
-  </nav> -->
   <div>
     <router-view></router-view>
   </div>
 </template>
 <script>
-
-
 export default {
   name: 'App',
-  components: {
-   
-  }
 }
 </script>
 
