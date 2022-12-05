@@ -25,6 +25,7 @@ const routes = [
         cookies.set('token', JSON.stringify(tokenJson))
         return (to.path = "/people/contacts")
       }
+      return (to.path = "/")
     },
     
     children: [

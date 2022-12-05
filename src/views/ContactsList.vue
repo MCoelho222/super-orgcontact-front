@@ -93,12 +93,12 @@ export default {
         }
     },
     methods: {
-        ...mapActions(["auth/validateToken", "auth/logout"]),
+        ...mapActions(["auth/logout", "getPersonInfo"]),
         async populate() {
             let token = cookies.get('token')
             if (token !== null) {
                 let loader = this.$loading.show();
-                await this["auth/validateToken"](token.token).then(() => {
+                this["contacts/getPersonInfo"](token.token).then(() => {
                     loader.hide()
                     // check valid token
                     let verifiedToken = cookies.get('token')

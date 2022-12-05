@@ -53,11 +53,10 @@ export default {
         }
     },
     methods: {
-        ...mapActions(["contacts/getPersonInfo"]),
+        ...mapActions(["auth/getUrlAuth"]),
         enterWithGoogle() {
-            this["contacts/getPersonInfo"]().then(() => {
-                
-                this.$router.push('people/contacts')
+            this["auth/getUrlAuth"]().then(() => {
+                location.href=this.url_auth
             })
         },
         // Hide/show sidebar
