@@ -29,7 +29,7 @@ export default {
             chartOptions: {
                 chart: {
                     title: 'Contacts by Domain',
-                    width: 1500,
+                    width: 1000,
                     height: 500
                 }
             },
@@ -72,6 +72,7 @@ export default {
     font-weight: bolder;
     animation: mymove 5s infinite;
 }
+
 @keyframes mymove {
   50% {font-size: 40px;}
 }

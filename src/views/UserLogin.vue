@@ -98,7 +98,7 @@ export default {
         return this.$store.state.template.toggleSideBar
         }
     },
-    async mounted() {
+    mounted() {
         let token = cookies.get('token')
         if (token !== null) {
             if (token.status) {

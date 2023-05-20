@@ -24,7 +24,7 @@ export default {
         } else {
           let payload = {
             'token': null,
-            'staus': false
+            'status': false
           }
           cookies.set('token', payload)
         }
