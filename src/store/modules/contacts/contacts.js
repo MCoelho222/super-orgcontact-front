@@ -4,7 +4,6 @@ import { useCookies } from "vue3-cookies";
 const cookies = useCookies().cookies;
 
 export default {
-  namespaced: true,
   state () {
     return {
       personInfo: {},
@@ -29,6 +28,8 @@ export default {
           }
           cookies.set('token', payload)
         }
+      }).catch((error) => {
+        console.log(error)
       })
     }
   }

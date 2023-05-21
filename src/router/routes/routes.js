@@ -13,30 +13,35 @@ const routes = [
     component: UserLogin
   },
   {
-    path: "/people:token?",
+    path: "/people/:token?",
     name: 'Template',
     component: TemplateView,
-    beforeEnter: (to) => {
+    beforeEnter: (to, from, next) => {
       if (to.params.token) {
         let tokenJson = {
           'token': to.params.token,
           'status': true
         }
         cookies.set('token', JSON.stringify(tokenJson))
-        return (to.path = "/people/contacts")
+        next("/people/contacts")
+      } 
+      if (to.path === "/people/contacts") {
+        next()
+      } else {
+        next("/")
       }
-      return (to.path = "/")
     },
     children: [
-
-      { path: 'contacts', 
-      component: ContactsList, 
+      { 
+        path: 'contacts', 
+        component: ContactsList,
       },
-      { path: 'report', 
-      component: ReportView
-      }
+      { 
+        path: 'report', 
+        component: ReportView,
+      },
     ]
-  }
+  },
 ]
 
 export default routes

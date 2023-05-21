@@ -105,7 +105,7 @@ export default {
             let token = cookies.get('token')
             if (token !== null) {
                 let loader = this.$loading.show();
-                this["contacts/getPersonInfo"](token.token).then(() => {
+                await this.getPersonInfo(token.token).then(() => {
                     loader.hide()
                     // check valid token
                     let verifiedToken = cookies.get('token')
