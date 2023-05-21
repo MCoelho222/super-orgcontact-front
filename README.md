@@ -1,16 +1,13 @@
 # Super OrgContact
 
+This project was a test for my first job as a Fullstack Developer. It uses the Google People API to get the user's contacts. These e-mails are returned to the frontend, which renders inside a list and displays a pie chart. It also sends them to MongoDB. I got it!
 ## Description
 
-This is the frontend application of the Super OrgContact project. The main objective is to download and display e-mail contacts of authenticated users. The contacts are displayed in a organized way, separated by domain. It also show a piechart with the distribution per domain.
+This is the frontend application of the Super OrgContact project. The main objective is to get and display e-mail contacts of authenticated users. The contacts are displayed in a organized way, separated by domain. It also shows a pie-chart with the distribution per domain.
 
-Access: [Super OrgContact](https://superorgcontactfirebase.web.app/)
+Frontend URL: [Super OrgContact](https://superorgcontactfirebase.web.app/)
 
-The backend is running on cloud run [Backend url](https://superorgcontact-3fufpf5spq-rj.a.run.app)
-
-**Important** Unfortunatelly, it's not working because of verification issues. This will soon be fixed.
-
-For running locally, and see the application working, please **switch to branch dev** here in the frontend repo, and also in the [backend repo](https://github.com/MCoelho222/super-orgcontact), and run both.
+The backend is running on Google Cloud Run [Backend url](https://superorgcontact-3fufpf5spq-rj.a.run.app)
 
 ## Project setup
 ```
